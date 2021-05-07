@@ -5,13 +5,78 @@ body {
 }
 
 h1 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 32px;
-    font-weight: 700;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 32px !important;
+    font-weight: bold !important;
+    color: #ED3D4C;
+    padding-bottom: 1em;
+}
+
+h3 {
+    font-family: "Open Sans", sans-serif !important; 
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}
+
+h4 {
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 20px !important;
 }
 
 p {
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
     font-weight: 400;
+}
+
+.container {
+    margin: 8%;
+}
+
+label {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#modal-link {
+    color: #FCB431;
+    font-weight: bold;
+}
+
+#modal-link:hover {
+    color: rgb(252, 180, 49, .6);
+}
+
+.btn-primary {
+    color: white !important; 
+    background-color: #FCB431 !important;
+    border: none !important; 
+    font-family: "Montserrat", sans-serif !important;
+}
+
+.btn-primary:hover {
+    background-color: rgb(252, 180, 49, .8) !important;
+    color: white !important;
+}
+
+.column-header {
+    font-weight: bold;
+}
+
+#modal-continue-button {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+#result-qpa-container {
+    padding-top: 3em;
+}
+
+#nav {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 28px !important;
+    /* font-weight: bold !important; */
+    color: black;
+    padding-left: 1em;
 }
