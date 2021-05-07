@@ -1,20 +1,22 @@
+// Adds a row (with unit and grade input fields) to the calculator 
 function addCourse() {
     var i = 0;
+    // adds a row to the units form (left side)
     var units_input = document.getElementById('units-form').firstElementChild;
     var units_clone = units_input.cloneNode(true);
     units_clone.id = "units-input" + i;
     units_input.parentNode.appendChild(units_clone);
 
+    // adds a row to the grade form (right side)
     var grade_input = document.getElementById('grade-form').firstElementChild;
     var grade_clone = grade_input.cloneNode(true);
     grade_clone.id = "grade-input" + i;
     grade_input.parentNode.appendChild(grade_clone);
 
-
-    // i = i+1; this doesn't work, needs to be saved to local storage
-
 }
 
+// calculates semester QPA based on user input
+// loops through units form and grade form to get inputs
 function calculate() {
     console.log("calculating..."); 
     // getting units and grade form 
@@ -37,11 +39,12 @@ function calculate() {
     var units_from_storage = localStorage.getItem("oldUnits");
     var points_from_storage = parseInt(localStorage.getItem("oldPoints"));
 
+    // saves units as 0 if none was inputted on homepage
     if (units_from_storage === 'NaN') {
         localStorage.setItem('oldUnits', 0);
     }
 
-
+    // getting old values + calculating new ones 
     var units_from_storage = parseInt(localStorage.getItem("oldUnits"));
     var points_from_storage = parseInt(localStorage.getItem("oldPoints"));
 
@@ -92,15 +95,19 @@ function calculate() {
 
 }
 
+// saves 'units factorable' and 'total points' values on homepage
 function savePreviousValues() {
+    // gets units factorable and total points and converts to number type
     var old_units = parseInt(document.getElementById("unitsfactorable").value);
     var old_points = parseInt(document.getElementById("totalpoints").value);
     var qpa = old_points / old_units; 
 
+    // saves to storage
     localStorage.setItem("oldUnits", old_units);
     localStorage.setItem("oldPoints", old_points);
     localStorage.setItem("oldQPA", qpa); 
 
+    // sanity check modal - confirms current QPA or that users didn't input any values after clicking 'next' button on homepage
     var modal = document.getElementById("curr-qpa");
 
     if(Number.isNaN(qpa)) {
@@ -113,7 +120,9 @@ function savePreviousValues() {
     }
 }
 
+// displays calculated QPA 
 function displayQPA() {
+    // gets elements by id to fill in results
     var div = document.getElementById('result-qpa');
     var qpa = localStorage.getItem('qpa');
     div.innerHTML = qpa;
@@ -121,13 +130,16 @@ function displayQPA() {
     var result_title = document.getElementById("result-title");
     var result_description = document.getElementById("result-description");
 
-    var new_qpa = parseInt(localStorage.getItem('qpa')); 
+    var new_qpa = parseFloat(localStorage.getItem('qpa')); 
     var old_qpa = localStorage.getItem('oldQPA');
     console.log("old qpa (before nan check): " + old_qpa); 
+
+    // if users left input fields blank on homepage, need to change value to 0
     if (old_qpa === 'NaN') {
         old_qpa = 0; 
         result_title.innerHTML = "You semester QPA is: "; 
     } else {
+        // personalized message based on whether QPA increased, decreased, or stayed the same 
         if (old_qpa < new_qpa) {
             result_title.innerHTML = "Good Job!";
             result_description.innerHTML = "Looks like your hard work is going to pay off :D Your overall QPA is: "; 
@@ -186,10 +198,12 @@ function displayQPA() {
 
 }
 
+// removes qpa from storage when users want to recalculate
 function removeStorage() {
     localStorage.removeItem("qpa");
 }
 
+// clears everything in storage when users click back to homepage
 function clearStorage() {
     window.localStorage.clear();
 }

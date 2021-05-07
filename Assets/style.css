@@ -41,7 +41,7 @@ label {
 
 #modal-link {
     color: #FCB431;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 #modal-link:hover {
@@ -79,4 +79,8 @@ label {
     /* font-weight: bold !important; */
     color: black;
     padding-left: 1em;
+}
+
+.animate__animated.animate__bounce {
+    --animate-duration: 1s;
 }
